@@ -20,7 +20,7 @@ bib_path <- function(...) {
 #'
 #' @export
 library_path <- function(...) {
-  return(path.expand(get_config_value("library_path", ...)))
+  return(get_config_value("library_path", ...))
 }
 
 
@@ -37,8 +37,8 @@ document_path <- function(bibtex_key, ...) {
   lib_path <- library_path(...)
 
   # Get all files in this directory
-  file_paths <- list.files(lib_path, recursive = TRUE, full.names = TRUE)
-  file_paths[!file.info(file_paths)$isdir]
+  file_paths <- file.path(lib_path, list.files(lib_path, recursive = TRUE))
+  file_paths <- file_paths[!file.info(file_paths)$isdir]
 
   # Look for target file
   matching_files <- file_paths[grepl(tools::file_path_sans_ext(basename(file_paths)), pattern = bibtex_key, fixed = TRUE)]
