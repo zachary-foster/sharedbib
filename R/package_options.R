@@ -70,7 +70,7 @@ new_default_options <- function(value = list()) {
 #' @export
 ref_options = new_default_options(list(
   verbose = FALSE,
-  config_file_name = ".refmanager.yml",
+  config_file_name = ".sharedbib.yml",
   local_references = TRUE,
   local_references_dir = "references",
   link_references = TRUE,

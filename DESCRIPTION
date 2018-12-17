@@ -1,11 +1,10 @@
-Package: refmanager
+Package: sharedbib
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Use a Single BibTeX File in Multiple Places Easily
+Version: 0.1.0.9001
+Author: Zachary S.L. Foster
+Maintainer: Zachary S.L. Foster <zacharyfoster1989@gmail.com>
+Description: This is an R package to help using a single BibTeX file in multiple places throughout a file system without relying on a static directory structure. This allows you to use a single BibTeX file and document library (e.g. a directory with PDFs) for all R markdown documents in directory and their sub directories, even if the directory or its sub directories are moved/renamed. It also helps linking and organizing PDFs (or other documents) associated with a citation, so you can have a single location for all PDFs. Its intended use is taking notes in R markdown.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

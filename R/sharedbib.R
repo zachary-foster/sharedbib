@@ -110,6 +110,9 @@ link_document <- function(bibtex_key, link_text = NULL, local_references = get_c
   } else {
     doc_path <- document_path(bibtex_key, ...)
   }
-  paste0("[Link to ", bibtex_key, "](", doc_path, ")")
+  if (is.null(link_text)) {
+    link_text <- basename(doc_path)
+  }
+  paste0("[", link_text, "](", doc_path, ")")
 }
 
