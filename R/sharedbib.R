@@ -79,6 +79,9 @@ add_document <- function(bibtex_key, overwrite_references = get_config_value("ov
     }
   }
   if (link_references) {
+    if (overwrite_references && (!is.na(Sys.readlink(copy_path)) || file.exists(copy_path))) {
+      file.remove(copy_path)
+    }
     R.utils::createLink(link = copy_path, target = doc_path, overwrite = overwrite_references)
   } else {
     file.copy(doc_path, copy_path, overwrite = overwrite_references)
