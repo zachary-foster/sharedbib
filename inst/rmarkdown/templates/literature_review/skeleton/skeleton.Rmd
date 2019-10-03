@@ -1,0 +1,17 @@
+---
+output: html_document
+bibliography: "`r sharedbib::bib_path()`"
+---
+
+```{r include=FALSE}
+library(sharedbib)
+link_all_references()
+```
+
+
+# Literature review
+
+## @my_bibtex_id
+
+
+# References

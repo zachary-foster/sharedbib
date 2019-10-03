@@ -84,7 +84,10 @@ add_document <- function(bibtex_key, overwrite_references = get_config_value("ov
     }
     R.utils::createLink(link = copy_path, target = doc_path, overwrite = overwrite_references)
   } else {
-    file.copy(doc_path, copy_path, overwrite = overwrite_references)
+    if (overwrite_references && (!is.na(Sys.readlink(copy_path)) || file.exists(copy_path))) {
+      file.remove(copy_path)
+    }
+    file.copy(from = doc_path, to = copy_path, overwrite = overwrite_references)
   }
 
   return(invisible(copy_path))
@@ -119,3 +122,25 @@ link_document <- function(bibtex_key, link_text = NULL, local_references = get_c
   paste0("[", link_text, "](", doc_path, ")")
 }
 
+
+#' Link all documents referenced in R markdown
+#'
+#' Add links to local copies or link to the documents referenced by a bibtex
+#' key. The folder the copy of the document is stored in is defined by the
+#' option "local_references_dir" in the user's configuration file or in
+#' [ref_options].
+#'
+#' @inheritParams  link_document
+#'
+#' @export
+link_all_references <- function(local_references = get_config_value("local_references")) {
+  source_path <- knitr::current_input(dir = TRUE)
+  if (is.null(source_path)) {
+    message('`link_all_references` only works when rendering a rmarkdown file.')
+    return(NULL)
+  }
+  source_text <- readr::read_file(source_path)
+  citations <- stringr::str_match_all(source_text, pattern = '@([A-Za-z0-9]+)')[[1]][,2]
+  unused_output <- lapply(citations, link_document, local_references = local_references)
+  return(NULL)
+}
