@@ -1,0 +1,55 @@
+---
+output: html_document
+bibliography: "`r sharedbib::bib_path()`"
+---
+
+```{r include=FALSE}
+library(sharedbib)
+```
+
+
+# Summary
+
+[A short summary of the subject as a whole in historical context]
+
+
+
+
+# Notes
+
+[A nested summary of information derived from the below sources organized by topic]
+
+
+
+
+# Articles
+
+## @my_bibtex_id
+
+`r link_document('my_bibtex_id')`
+
+### Relevance
+
+[Subjective summary of the relevant information and the quality of the work]
+
+### Context
+
+[How this article relates to others articles and ideas in the same time period]
+
+### Notes
+
+[Quotes or summaries of points made in the article]
+
+
+
+
+# To read
+
+[A list of things not yet read]
+
+
+
+
+# References
+
+[Where the bibliography is automatically added]
